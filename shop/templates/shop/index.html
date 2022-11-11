@@ -27,7 +27,7 @@
                         <a class="nav-link" href="#">Features</a>
                       </li>
                       <li class="nav-item">
-                        <button id="cart" type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+                        <button id="cart" data-html=true type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
                                 sagittis lacus vel augue laoreet rutrum faucibus.">
                               Cart(0)
                         </button>
@@ -124,6 +124,7 @@
     });
     $(function () {
         $('[data-toggle="popover"]').popover()
+        document.getElementById("cart").setAttribute('data-content', '<h5>This is your cart</h5>')
     })
 </script>
 </html>
