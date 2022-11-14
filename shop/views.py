@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Product, Order
 from django.core.paginator import Paginator
 
 
@@ -26,4 +26,15 @@ def detail(request, id):
 
 
 def checkout(request):
+    if request.method == "POST":
+        name = request.POST.get("name", "")
+        email = request.POST.get("email", "")
+        address = request.POST.get("address", "")
+        city = request.POST.get("city", "")
+        state = request.POST.get("state", "")
+        zipcode = request.POST.get("zipcode", "")
+
+        order = Order(name=name, email=email, address=address, city=city, state=state, zipcode=zipcode)
+        order.save()
+
     return render(request, 'shop/checkout.html')
