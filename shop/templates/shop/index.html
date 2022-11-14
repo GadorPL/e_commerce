@@ -112,11 +112,14 @@
     $(document).on('click', '.atc', function(){
         let item_id = this.id.toString();
 
-        if(cart[item_id]!==undefined){
-            cart[item_id] = cart[item_id] + 1;
-        }
-        else{
-            cart[item_id] = 1;
+        let quantity;
+        if (cart[item_id] !== undefined) {
+            quantity = cart[item_id][0] + 1;
+            cart[item_id][0] = quantity;
+        } else {
+            quantity = 1;
+            name = document.getElementById("nm"+item_id).innerHTML
+            cart[item_id]=[quantity, name];
         }
         localStorage.setItem('cart', JSON.stringify(cart));
         document.getElementById("cart").innerHTML = "Cart("+ Object.keys(cart).length +")";
@@ -131,7 +134,7 @@
 
         for(let x in cart){
             cartString += cartIndex
-            cartString += document.getElementById("nm"+x).innerHTML + " Quantity: " + cart[x] + "</br>";
+            cartString += document.getElementById("nm"+x).innerHTML + " Quantity: " + cart[0] + "</br>";
             cartIndex += 1;
         }
         cartString += "<a href='/checkout' class='btn btn-warning' id='checkout'>Checkout</a>";
