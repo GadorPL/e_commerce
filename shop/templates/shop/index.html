@@ -134,11 +134,10 @@
         let cartString ="";
         cartString += "<h5>This is your cart</h5>";
         let cartIndex = 1;
+        let cartObject = JSON.parse(localStorage.getItem('cart'))
 
-        for(let x in cart){
-            cartString += cartIndex
-            cartString += document.getElementById("nm"+x).innerHTML + " Quantity: " + cart[0] + "</br>";
-            cartIndex += 1;
+        for (item in cartObject) {
+            cartString += cartObject[item][1] + " Qty: " + cartObject[item][0] + "</br>"
         }
         cartString += "<a href='/checkout' class='btn btn-warning' id='checkout'>Checkout</a>";
         document.getElementById("cart").setAttribute('data-content', cartString);
